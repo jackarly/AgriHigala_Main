@@ -1,14 +1,13 @@
 <?php
 
-namespace App;
+namespace App
 
 use Illuminate\Database\Eloquent\Model;
 
-class GCash extends Model
+class CashOnDelivery extends Model
 {
-    protected $table = "gcash";
-    protected $primaryKey = "gcash_id";
-
+    protected $table = "cod";
+    protected $primaryKey = "cod_id";
     protected $guarded = [];
     public function payment()
     {

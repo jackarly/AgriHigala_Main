@@ -60,7 +60,7 @@ class User extends Authenticatable
      public function admin()
      {
 
-        return $this->hasOne('App\Admin');
+        return $this->hasOne('App\Admin', 'user_id', 'user_id');
      }
     
 }
