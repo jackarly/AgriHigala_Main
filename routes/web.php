@@ -19,7 +19,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Admin
+Route::get('/admin', 'admin\AdminsController@adminDashboard')->name('admin');
 Route::prefix('admin')->group(function () {
-    Route::get('/', 'admin\AdminsController@showAdminLoginForm');
+    Route::get('/login', 'admin\AdminsController@showAdminLoginForm')->name('admin.login');
+    Route::get('/order', 'admin\AdminsController@showAdminLoginForm')->name('admin.order.index');
+    Route::get('/review', 'admin\AdminsController@showAdminLoginForm')->name('admin.review.index');
     // Route::post('post', 'admin\AdminsController@post');
 });

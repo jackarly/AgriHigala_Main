@@ -12,9 +12,12 @@ class AdminsController extends Controller
 {
     // LOGIN FORM
     public function showAdminLoginForm(){
-        
-
         return view('admin.auth.login');
+    }
+
+    // DASHBOARD
+    public function adminDashboard(){
+        return view('admin.index');
     }
 
     // public function post(){
