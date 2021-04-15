@@ -1,6 +1,6 @@
 <?php
 
-namespace App
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,25 +11,28 @@ class Stock extends Model
     protected $guarded = [];
    
 
-    public function products ()
-    {
+    public function products(){
         return $this->belongsTo('App\Product');
     }
 
-    public function orderLines ()
-    {
+    public function orderLines(){
         return $this->hasMany('App\Orderline');
     }
 
-    public function prices()
-    {
+    public function prices(){
         return $this->hasMany('App\Price','stock_id','stock_id');
     }
 
-    public function seller()
-    {
-
+    public function seller(){
         return $this->belongsTo('App\Seller','seller_id','seller_id' );
+    }
+
+    public static function countActiveStock(){
+        $data=Stock::where('deleted_at', null)->count();
+        if($data){
+            return $data;
+        }
+        return 0;
     }
 
 }

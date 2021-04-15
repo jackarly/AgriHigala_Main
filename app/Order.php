@@ -1,6 +1,6 @@
 <?php
 
-namespace App
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,28 +9,45 @@ class Order extends Model
     protected $table= "orders";
     protected $primaryKey = "order_id";
     protected $guarded = [];
-    public function payment()
-    {
+
+    public function payment(){
         return $this->belongsTo('App\Payment');
     }
 
-    public function buyer()
-    {
+    public function buyer(){
         return $this->belongsTo('App\Buyer');
     }
 
-    public function orderLines()
-    {
+    public function orderLines(){
         return $this->hasMany('App\OrderLine');
     }
 
-    public function transaction()
-    {
+    public function transaction(){
         return $this->hasOne('App\Transaction');
     }
 
-    public function returnOrder()
-    {
+    public function returnOrder(){
         return $this->hasOne('App\ReturnOrder');
+    }
+    
+    public static function countOrder($order){
+
+        switch($order)
+        {
+            case 'active':
+                $data=Order::whereNull('received_at')->count();
+                if($data){
+                    return $data;
+                }
+
+            case 'complete':
+                $data=Order::whereNotNull('received_at')->count();
+                if($data){
+                    return $data;
+                }
+                
+            default:
+                return 0;
+        }
     }
 }

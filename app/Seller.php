@@ -1,8 +1,9 @@
 <?php
 
-namespace App
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\Seller as Authenticatable;
 class Seller extends Model
 {
@@ -16,32 +17,35 @@ class Seller extends Model
     //     'organization_name','email','mobile_number','street','barangay','schedule_online_time',
     //     'seller_image','seller_description','user_id'
     // ];
-    public function user()
-    {
-
+    public function user(){
         return $this->belongsTo(User::class,'user_id','user_id');
     }
 
-    public function riders()
-    {
-
+    public function riders(){
         return $this->hasMany('App\Rider');
     }
 
-    public function messages()
-    {
-
+    public function messages(){
         return $this->hasMany('App\Message');
     }
 
-    public function org()
-    {
-
+    public function org(){
         return $this->belongsTo(Org::class,'org_id','org_id');
     }
 
     public function stocks(){
-
         return $this->hasMany('App\Stock','seller_id','seller_id');
+    }
+
+    public static function countActiveSeller(){
+        $data = DB::table('users as a')
+            ->join('sellers as b', 'a.user_id', '=', 'b.user_id')
+            ->where('a.deleted_at', null)
+            ->count();
+
+        if($data){
+            return $data;
+        }
+        return 0;
     }
 }
