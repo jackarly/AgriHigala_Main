@@ -26,5 +26,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/orders', 'admin\AdminsController@showAdminLoginForm')->name('admin.order.index');
     Route::get('/reviews', 'admin\AdminsController@showAdminLoginForm')->name('admin.review.index');
     Route::resource('/users','admin\UsersController', ['names' => 'admin.users']);
+    Route::get('/users/create/{id?}', 'admin\UsersController@create')->name('admin.users.create');
+
     // Route::post('post', 'admin\AdminsController@post');
 });

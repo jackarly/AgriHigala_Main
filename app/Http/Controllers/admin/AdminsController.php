@@ -4,12 +4,24 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Admin;
 
 class AdminsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(){
+        if(!isset(Auth::id()) ){
+            return redirect()->route('admin.login');
+        }
+    }
+
     // LOGIN FORM
     public function showAdminLoginForm(){
         return view('admin.auth.login');

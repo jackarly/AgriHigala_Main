@@ -6,3 +6,8 @@ img.img-fluid.rounded-circle {
     object-fit: cover;
     object-position: center;
 }
+
+input#user_image {
+    border: 1px solid #d1d3e2;
+    border-radius: .35rem;
+}

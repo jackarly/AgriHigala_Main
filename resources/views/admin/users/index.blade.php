@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
-@section('title','Agri-Higala|Users')
+
 @section('main-content')
+
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
      <div class="row">
@@ -10,8 +11,7 @@
      </div>
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary float-left">Users List</h6>
-      {{-- <a href="{{route('users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a> --}}
-      <a href="#" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
+      <a href="{{route('admin.users.create')}}" class="btn btn-primary btn-sm float-right" data-toggle="tooltip" data-placement="bottom" title="Add User"><i class="fas fa-plus"></i> Add User</a>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -47,16 +47,16 @@
                       // SET ROLE
                       switch ($user->user_type){
                         case 1:
-                            $role = 'Admin';
+                          $role = 'Admin';
                           break;
                         case 2:
-                            $role = 'Seller';
+                          $role = 'Seller';
                           break;
                         case 3:
-                            $role = 'Rider';
+                          $role = 'Rider';
                           break;
                         case 4:
-                            $role = 'Buyer';
+                          $role = 'Buyer';
                           break;
                       }
                     @endphp
@@ -74,8 +74,14 @@
                         <span class="badge badge-warning">inactive</span>
                     </td>
                     <td>
-                        {{-- <a href="{{route('users.edit',$user->id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a> --}}
-                        <a href="#" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('admin.users.edit', $user->user_id)}}" 
+                            class="btn btn-primary btn-sm float-left mr-1 {{$user->user_type == 1 ? 'disabled' : ''}}" 
+                            style="height:30px; width:30px;border-radius:50%" 
+                            data-toggle="tooltip" 
+                            title="edit" 
+                            data-placement="bottom">
+                            <i class="fas fa-edit"></i>
+                          </a>
 
                         {{-- <form method="POST" action="{{route('users.destroy',[$user->id])}}"> --}}
                         <form method="POST" action="#">

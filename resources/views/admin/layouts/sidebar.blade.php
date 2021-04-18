@@ -39,11 +39,8 @@
             <div id="userCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">User Options:</h6>
-                <a class="collapse-item" href=" {{route('admin.users.index')}} ">Users</a>
-                <a class="collapse-item" href="#">Add Admin</a>
-                <a class="collapse-item" href="#">Add Seller</a>
-                <a class="collapse-item" href="#">Add Rider</a>
-                <a class="collapse-item" href="#">Add Buyer</a>
+                <a class="collapse-item" href="{{route('admin.users.index')}}">Users</a>
+                <a class="collapse-item" href="{{route('admin.users.create')}}">Add User</a>
             </div>
             </div>
         </li>

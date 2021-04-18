@@ -48,4 +48,19 @@ class Seller extends Model
         }
         return 0;
     }
+
+    public static function getActiveSeller(){
+        $data = DB::table('users as a')
+            ->join('sellers as b', 'a.user_id', 'b.user_id')
+            ->select('b.seller_id', 'a.username', 'a.f_name', 'a.l_name')
+            ->where('a.deleted_at', null)
+            ->orderBy('a.f_name')
+            ->orderBy('a.l_name')
+            ->get();
+
+        if($data->isEmpty()){
+            return false;
+        }
+        return $data;
+    }
 }

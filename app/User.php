@@ -7,60 +7,50 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
-{
-    protected $table = 'users';
-    protected $primaryKey = "user_id";
-    use Notifiable;
-
-
-   
+{   
+   protected $table = 'users';
+   protected $primaryKey = "user_id";
+   use Notifiable;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $guarded = [];
+   protected $guarded = [];
    //  protected $fillable = [
    //      'user_id'
    //  ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+   /**
+    * The attributes that should be hidden for arrays.
+    *
+    * @var array
+    */
+   protected $hidden = [
+      'password', 'remember_token',
+   ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+   /**
+    * The attributes that should be cast to native types.
+    *
+    * @var array
+    */protected $casts = [
+       'email_verified_at' => 'datetime',
+   ];
 
-    public function rider(){
+   public function rider(){
+      return $this->hasOne('App\Rider','user_id','user_id');
+   }
 
-       return $this->hasOne('App\Rider','user_id','user_id');
-    }
+   public function seller(){
+      return $this->hasOne(Seller::class,'user_id','user_id');
+   }
 
-    public function seller(){
+   public function buyer(){
+      return $this->hasOne(Buyer::class,'user_id','user_id');
+   }
 
-        return $this->hasOne(Seller::class,'user_id','user_id');
-     }
-
-     public function buyer()
-     {
-
-        return $this->hasOne(Buyer::class,'user_id','user_id');
-     }
-
-     public function admin()
-     {
-
-        return $this->hasOne('App\Admin', 'user_id', 'user_id');
-     }
-    
+   public function admin(){
+      return $this->hasOne('App\Admin', 'user_id', 'user_id');
+   }
 }
