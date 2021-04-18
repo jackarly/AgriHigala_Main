@@ -11,15 +11,10 @@ use App\Admin;
 
 class AdminsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct(){
-        if(!isset(Auth::id()) ){
-            return redirect()->route('admin.login');
-        }
+    
+    public function __construct()
+    {
+        
     }
 
     // LOGIN FORM

@@ -138,10 +138,14 @@
                 <label for="organization" class="col-form-label">Organization</label>
                 <select name="organization" id="organization" class="form-control  @error('organization') is-invalid @enderror">  
                   <option selected disabled>--- Select Organization ---</option>
-                  @foreach($orgs as $org)
-                    <option value="{{$org->org_id}}">{{$org->org_name}}</option>
-                  @endforeach 
-                  <option disabled>--- End of results ---</option>
+                  @if ($orgs)
+                    @foreach($orgs as $org)
+                      <option value="{{$org->org_id}}">{{$org->org_name}}</option>
+                    @endforeach 
+                    <option disabled>--- End of results ---</option>
+                  @else
+                    <option value="" disabled>No available organization</option>
+                  @endif
                 </select>
                 @error('organization')
                   <span class="text-danger">{{$message}}</span>
@@ -150,16 +154,12 @@
               {{-- SCHEDULED ONLINE TIME --}}
               <div class="form-group">
                 <label for="schedule_online_time" class="col-form-label">Schedule online time</label>
-                <textarea name="schedule_online_time" id="schedule_online_time" class="form-control" rows="2">
-                  {{old('schedule_online_time') }}
-                </textarea>
+                <textarea name="schedule_online_time" id="schedule_online_time" class="form-control" rows="2">{{old('schedule_online_time')}}</textarea>
               </div>
               {{-- SELLER DESCRIPTION --}}
               <div class="form-group">
                 <label for="seller_description" class="col-form-label">Seller description</label>
-                <textarea name="seller_description" id="seller_description" class="form-control" rows="5">
-                  {{old('seller_description') }}
-                </textarea>
+                <textarea name="seller_description" id="seller_description" class="form-control" rows="5">{{old('seller_description') }}</textarea>
               </div>
               @break
 
@@ -179,7 +179,7 @@
                       @endforeach
                       <option value=""disabled>--- End of results ---</option>
                     @else
-                      <option value="" disabled>No available sellers</option>
+                      <option value="" disabled>No available seller</option>
                     @endif
                 </select>
                 @error('seller')
@@ -189,9 +189,7 @@
               {{-- RIDER DESCRIPTION --}}
               <div class="form-group">
                 <label for="rider_description" class="col-form-label">Rider description</label>
-                <textarea name="rider_description" id="rider_description" class="form-control" rows="5">
-                  {{old('rider_description') }}
-                </textarea>
+                <textarea name="rider_description" id="rider_description" class="form-control" rows="5">{{old('rider_description')}}</textarea>
               </div>
               @break
 
@@ -210,9 +208,9 @@
                 <label for="gender" class="col-form-label">Gender</label>
                 <select name="gender" id="gender" class="form-control  @error('gender') is-invalid @enderror">  
                   <option value="" selected disabled>--- Select Gender ---</option> 
-                  <option value="male" >Male</option> 
-                  <option value="female" >Female</option>
-                  <option value="prefer not to say" >Prefer not to say</option>
+                  <option value="Male" >Male</option> 
+                  <option value="Female" >Female</option>
+                  <option value="Prefer not to say" >Prefer not to say</option>
                 </select>
                 @error('gender')
                   <span class="text-danger">{{$message}}</span>

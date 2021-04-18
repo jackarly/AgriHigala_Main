@@ -22,12 +22,12 @@ class Org extends Model
     }
 
     public static function findAvailableOrgs(){
-        $data = DB::table('orgs as a')
+        $countOrg = DB::table('orgs as a')
             ->leftJoin('sellers as b', 'a.org_id', 'b.org_id')
             ->whereNull('b.org_id')
             ->count();
 
-        if($data){
+        if($countOrg){
             $data = DB::table('orgs as a')
                 ->leftJoin('sellers as b', 'a.org_id', 'b.org_id')
                 ->whereNull('b.org_id')
@@ -35,10 +35,7 @@ class Org extends Model
                 ->get();
             return $data;
         }
-        // else{
-        //     return 'No available organization';
-        // }
-        return 0;
+        return false;
         
     }
 }

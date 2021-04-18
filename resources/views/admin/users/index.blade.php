@@ -64,7 +64,7 @@
                     <td><a href="">{{$user->user_id}}</a></td>
                     <td><a href="">{{$user->username}}</a></td>
                     <td><a href="" class="text-capitalize">{{$user->f_name}} {{$user->l_name}}</a></td>
-                    <td>
+                    <td class="text-center">
                       <img src="/storage/user/{{$user->user_image}}" class="img-fluid rounded-circle" style="max-width:50px" alt="{{$user->user_image}}">
                     </td>
                     <td>{{(($user->created_at)? $user->created_at->diffForHumans() : '')}}</td>
@@ -74,19 +74,11 @@
                         <span class="badge badge-warning">inactive</span>
                     </td>
                     <td>
-                        <a href="{{route('admin.users.edit', $user->user_id)}}" 
-                            class="btn btn-primary btn-sm float-left mr-1 {{$user->user_type == 1 ? 'disabled' : ''}}" 
-                            style="height:30px; width:30px;border-radius:50%" 
-                            data-toggle="tooltip" 
-                            title="edit" 
-                            data-placement="bottom">
-                            <i class="fas fa-edit"></i>
-                          </a>
+                        <a href="{{route('admin.users.edit', $user->user_id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
 
-                        {{-- <form method="POST" action="{{route('users.destroy',[$user->id])}}"> --}}
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{route('admin.users.destroy',[$user->user_id])}}">
                           @csrf 
-                          @method('delete')
+                          @method('DELETE')
                           <button class="btn btn-danger btn-sm dltBtn" data-id={{$user->id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                         </form>
                     </td>
