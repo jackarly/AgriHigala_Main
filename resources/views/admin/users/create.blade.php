@@ -136,7 +136,7 @@
                   $orgs=\App\Org::findAvailableOrgs();
                 @endphp
                 <label for="organization" class="col-form-label">Organization</label>
-                <select name="organization" id="organization" class="form-control  @error('organization') is-invalid @enderror">  
+                <select name="organization" id="organization" class="form-control text-capitalize @error('organization') is-invalid @enderror">  
                   <option selected disabled>--- Select Organization ---</option>
                   @if ($orgs)
                     @foreach($orgs as $org)
@@ -170,11 +170,11 @@
                     $sellers=\App\Seller::getActiveSeller();
                 @endphp
                 <label for="seller" class="col-form-label">Seller</label>
-                <select name="seller" id="seller" class="form-control  @error('seller') is-invalid @enderror">  
+                <select name="seller" id="seller" class="form-control text-capitalize  @error('seller') is-invalid @enderror">  
                     <option value="" selected disabled>--- Select Seller ---</option>
                     @if ($sellers)
                       @foreach($sellers as $seller)
-                      <option value="{{$seller->seller_id}}" class="text-capitalize">{{$seller->f_name}} {{$seller->l_name}}:{{$seller->username}}
+                      <option value="{{$seller->seller_id}}">{{$seller->f_name}} {{$seller->l_name}}:{{$seller->username}}
                       </option>
                       @endforeach
                       <option value=""disabled>--- End of results ---</option>
@@ -255,7 +255,6 @@
     </div>
   </div>
 </div>
-
 @endsection
 
 @push('scripts')

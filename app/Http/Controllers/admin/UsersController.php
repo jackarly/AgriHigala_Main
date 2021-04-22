@@ -12,7 +12,6 @@ use App\Admin;
 use App\Seller;
 use App\Rider;
 use App\Buyer;
-use App\Org;
 
 class UsersController extends Controller{
 
@@ -285,8 +284,7 @@ class UsersController extends Controller{
         return redirect()->route('admin.users.index');
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         $user = User::find($id);
         $user->delete();
 

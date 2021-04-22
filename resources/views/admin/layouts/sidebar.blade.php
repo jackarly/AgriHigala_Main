@@ -60,36 +60,36 @@
         <div class="sidebar-heading">
             Products
         </div>
+        <!--Categories -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#categoryCollapse" aria-expanded="true" aria-controls="categoryCollapse">
+            <i class="fas fa-sitemap"></i>
+            <span>Product Category</span>
+            </a>
+            <div id="categoryCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Category Options:</h6>
+                <a class="collapse-item" href="{{route('admin.categories.index')}}">Category</a>
+                <a class="collapse-item" href="{{route('admin.categories.create')}}">Add Category</a>
+            </div>
+            </div>
+        </li>
         <!--Products -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productCollapse" aria-expanded="true" aria-controls="productCollapse">
               <i class="fas fa-cubes"></i>
-              <span>Products</span>
+              <span>Product List</span>
             </a>
             <div id="productCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Product Options:</h6>
-                <a class="collapse-item" href="#">Products</a>
-                <a class="collapse-item" href="#">Add Product</a>
+                <a class="collapse-item" href="{{route('admin.products.index')}}">Products</a>
+                <a class="collapse-item" href="{{route('admin.products.create')}}">Add Product</a>
               </div>
             </div>
         </li>
-        <!--Product Types -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#productTypeCollapse" aria-expanded="true" aria-controls="productTypeCollapse">
-            <i class="fas fa-sitemap"></i>
-            <span>Product Type</span>
-            </a>
-            <div id="productTypeCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Product Type Options:</h6>
-                <a class="collapse-item" href="#">Product Type</a>
-                <a class="collapse-item" href="#">Add Product Type</a>
-            </div>
-            </div>
-        </li>
         <!--SRPs -->
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#srpCollapse" aria-expanded="true" aria-controls="srpCollapse">
             <i class="fas fa-sitemap"></i>
             <span>SRP</span>
@@ -101,7 +101,7 @@
                 <a class="collapse-item" href="#">Add SRP</a>
             </div>
             </div>
-        </li>
+        </li> --}}
         <!--Stocks -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stockCollapse" aria-expanded="true" aria-controls="stockCollapse">
@@ -111,8 +111,8 @@
             <div id="stockCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Stock Options:</h6>
-                <a class="collapse-item" href="#">Stock</a>
-                <a class="collapse-item" href="#">Add Stock</a>
+                <a class="collapse-item" href="{{route('admin.stocks.index')}}">Stock</a>
+                <a class="collapse-item" href="{{route('admin.stocks.create')}}">Add Stock</a>
             </div>
             </div>
         </li>

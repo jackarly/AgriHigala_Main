@@ -58,9 +58,9 @@ class Seller extends Model
             ->orderBy('a.l_name')
             ->get();
 
-        if($data->isEmpty()){
-            return false;
+        if($data){
+            return $data;
         }
-        return $data;
+        return false;
     }
 }

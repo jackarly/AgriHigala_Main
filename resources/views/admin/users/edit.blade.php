@@ -44,7 +44,7 @@
             @error('password')
               <span class="text-danger">{{$message}}</span>
             @enderror
-            <small class="text-info">Default is mobile number</small>
+            {{-- <small class="text-info">Default is mobile number</small> --}}
           </div>
           
           {{-- EMAIL --}}
