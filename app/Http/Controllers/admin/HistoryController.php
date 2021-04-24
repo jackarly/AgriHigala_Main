@@ -25,7 +25,7 @@ class HistoryController extends Controller
             ->join('payments as b', 'a.order_id', 'b.order_id')
             ->leftJoin('return_orders as c', 'c.order_id', 'a.order_id')
             ->join('fees as d', 'b.fee_id', 'd.fee_id')
-            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'd.seller_id')
+            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'c.description as reason_description', 'd.seller_id')
             // ->select('a.order_id','a.completed_at', 'a.accepted_at as order_accepted_at', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'a.packed_at' )
             ->where('a.completed_at', '<>' ,null)
             // ->get();

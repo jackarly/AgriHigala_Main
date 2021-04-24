@@ -23,7 +23,7 @@ class ReturnOrdersController extends Controller
             ->join('payments as b', 'a.order_id', 'b.order_id')
             ->leftJoin('return_orders as c', 'c.order_id', 'a.order_id')
             ->join('fees as d', 'b.fee_id', 'd.fee_id')
-            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'd.seller_id')
+            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'c.description as reason_description', 'd.seller_id')
             ->where('c.return_id', '<>', null)
             ->where('a.completed_at', null)
             ->paginate(10);
@@ -44,7 +44,7 @@ class ReturnOrdersController extends Controller
             ->join('payments as b', 'a.order_id', 'b.order_id')
             ->join('return_orders as c', 'c.order_id', 'a.order_id')
             ->join('fees as d', 'b.fee_id', 'd.fee_id')
-            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'd.seller_id')
+            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'c.description as reason_description', 'd.seller_id')
             ->where('a.order_id', $id)
             ->first();
 

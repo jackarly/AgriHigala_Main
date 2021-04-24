@@ -313,7 +313,7 @@
                       <span class="text-danger">{{$message}}</span>
                     @enderror
                     <div class="form-group mt-1" style="width: 100%">
-                      <textarea name="description" id="description" rows="3" class="form-control" style="width: 100%" {{$delivered_disable}}></textarea>
+                      <textarea name="description" id="description" rows="3" class="form-control form-control-sm" style="width: 100%" {{$delivered_disable}}>{{old('description', $order->reason_description )}}</textarea>
                     </div>
                   </form>
                 </div>
