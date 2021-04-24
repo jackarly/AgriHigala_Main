@@ -46,4 +46,16 @@ class Buyer extends Model
         }
         return 0;
     }
+
+    public static function getBuyer($id){
+        $data = DB::table('users as a')
+            ->join('buyers as b', 'a.user_id', '=', 'b.user_id')
+            ->where('b.buyer_id', $id)
+            ->first();
+
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
 }

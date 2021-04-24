@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\ProductType;
-use App\Product;
 use App\Stock;
 use App\Price;
 

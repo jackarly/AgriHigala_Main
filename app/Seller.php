@@ -63,4 +63,18 @@ class Seller extends Model
         }
         return false;
     }
+
+    public static function getSellerFromPayment($id){
+        $data = DB::table('payments as a')
+            ->join('fees as b', 'a.fee_id', 'b.fee_id')
+            ->join('sellers as c', 'b.seller_id', 'c.seller_id')
+            ->join('users as d', 'c.user_id', 'd.user_id')
+            ->where('a.payment_id', $id)
+            ->first();
+
+        if($data){
+            return $data;
+        }
+        return 0;
+    }
 }

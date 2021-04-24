@@ -127,30 +127,30 @@
         </div>
         <!--Orders -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.orders.index')}}">
                 <i class="fas fa-box"></i>
                 <span>Orders</span>
             </a>
         </li>
         <!--Return Orders -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.returns.index')}}">
                 <i class="fas fa-box-open"></i>
                 <span>Return Orders</span>
             </a>
         </li>
         <!--History -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.history.index')}}">
                 <i class="fa fa-history"></i>
                 <span>History</span>
             </a>
         </li>
-        <!--Reviews -->
+        <!--Ratings -->
         <li class="nav-item">
             <a class="nav-link" href="#">
                 <i class="fas fa-hammer"></i>
-                <span>Reviews</span>
+                <span>Ratings</span>
             </a>
         </li>
         <!-- Divider -->

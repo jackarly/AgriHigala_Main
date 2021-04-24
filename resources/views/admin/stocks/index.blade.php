@@ -19,7 +19,7 @@
         <table class="table table-bordered" id="stock-dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
-              <th>S.N.</th>
+              <th>Stock No.</th>
               <th>Product</th>
               <th>Category</th>
               <th>Description</th>
@@ -32,7 +32,7 @@
           </thead>
           <tfoot>
             <tr>
-              <th>S.N.</th>
+              <th>Stock No.</th>
               <th>Product</th>
               <th>Category</th>
               <th>Description</th>

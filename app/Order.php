@@ -27,7 +27,7 @@ class Order extends Model
     }
 
     public function returnOrder(){
-        return $this->hasOne('App\ReturnOrder');
+        return $this->hasOne('App\ReturnOrder', 'order_id', 'order_id');
     }
     
     public static function countOrder($order){
@@ -35,13 +35,13 @@ class Order extends Model
         switch($order)
         {
             case 'active':
-                $data=Order::whereNull('received_at')->count();
+                $data=Order::whereNull('delivered_at')->count();
                 if($data){
                     return $data;
                 }
 
             case 'complete':
-                $data=Order::whereNotNull('received_at')->count();
+                $data=Order::whereNotNull('delivered_at')->count();
                 if($data){
                     return $data;
                 }

@@ -15,10 +15,19 @@ class OrderLine extends Model
 
     }
 
-
     public function  order()
     {
         return $this->belongsTo('App\Order');
 
+    }
+
+    public static function getOrderQuantity($id){
+        $data = OrderLine::where('order_id', $id)
+            ->sum('order_qty');
+
+        if($data){
+            return $data;
+        }
+        return 0;
     }
 }

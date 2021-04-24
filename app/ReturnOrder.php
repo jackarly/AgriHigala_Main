@@ -12,7 +12,7 @@ class ReturnOrder extends Model
 
     public function order()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Order', 'order_id', 'order_id');
     }
 
     public function reason()
