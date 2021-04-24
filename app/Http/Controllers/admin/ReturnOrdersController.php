@@ -57,25 +57,31 @@ class ReturnOrdersController extends Controller
         }
     }
 
+    public function create(){
+        return redirect()->route('admin.returns.index');
+    }
+
     /* 
-    CREATE
+    STORE
     */
-    public function create(Request $request){
+    public function store(Request $request){
         
+        // VALIDATOR FOR REASON
+        $validated = $request->validate([
+            'reason' => ['required']
+        ]);
+
         // CHECK FOR RESPONSE & ORDER
         $response = $request->input('response');
         $id = $request->input('order');
         $order = Order::find($id);
 
         if ($response == 'return' && $order){
-
-            // ADD VALIDATOR HERE
-
             // CREATE RETURN ORDER
             $return = new ReturnOrder;
             $return->order_id = $id;
-            $return->reason_id = 1;
-            $return->description = 'Default: Change this';
+            $return->reason_id = $request->input('reason');
+            $return->description = $request->input('description');
             $return->save();
             
             request()->session()->flash('success','Return Order added');

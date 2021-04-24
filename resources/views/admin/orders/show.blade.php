@@ -224,6 +224,9 @@
                       @endforeach
                     @endif
                   </select>
+                  @error('rider')
+                    <span class="text-danger">{{$message}}</span>
+                  @enderror
                   @method('PUT')
                   
                 </form>
@@ -262,7 +265,7 @@
                   @csrf
                   @method('PUT')
                   <input type="hidden" name="response" value="delivered">
-                  <input type="submit" value="Delivered" class="btn btn-sm {{$delivering_btn == true ? 'btn-primary' : 'btn-secondary'}}" {{$delivering_disable}}> 
+                  <input type="submit" value="Delivered" class="btn btn-sm {{$delivering_btn == true ? 'btn-info' : 'btn-secondary'}}" {{$delivering_disable}}> 
                 </form>
               </td>
             </tr>
@@ -293,11 +296,11 @@
                 </div>
                 {{-- DELIVERED: RETURN --}}
                 <div class="my-1">
-                  <form class="form-inline" method="POST" action="{{route('admin.returns.create')}}">
+                  <form class="form-inline" method="POST" action="{{route('admin.returns.store')}}">
                     @csrf
-                    <input type="submit" value="Return" class="btn btn-sm {{$delivered_btn == true ? 'btn-warning' : 'btn-secondary'}}" {{$delivered_disable}}>
                     <input type="hidden" name="response" value="return">
                     <input type="hidden" name="order" value="{{$order->order_id}}">
+                    <input type="submit" value="Return" class="btn btn-sm {{$delivered_btn == true ? 'btn-warning' : 'btn-secondary'}}" {{$delivered_disable}}>
                     <select name="reason" id="" class="form-control form-control-sm ml-auto" {{$delivered_disable}}>
                       <option disabled selected>--- Select Reason ---</option>
                       @if ($reasons)
@@ -306,6 +309,12 @@
                         @endforeach
                       @endif
                     </select>
+                    @error('reason')
+                      <span class="text-danger">{{$message}}</span>
+                    @enderror
+                    <div class="form-group mt-1" style="width: 100%">
+                      <textarea name="description" id="description" rows="3" class="form-control" style="width: 100%" {{$delivered_disable}}></textarea>
+                    </div>
                   </form>
                 </div>
               </td>

@@ -65,17 +65,17 @@ class OrdersController extends Controller
 
     public function edit($id)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     public function destroy($id)
     {
-        //
+        return redirect()->route('admin.orders.index');
     }
 
     /* 
@@ -110,10 +110,16 @@ class OrdersController extends Controller
     */
     public function sellerOrderPending (Request $request, $id){
         
+        // VALIDATOR FOR RIDER
+        $validated = $request->validate([
+            'rider' => ['required']
+        ]);
+
         // CHECK IF THERE'S A RESPONSE
         $response = $request->input('response');
         if ($response == 'packed'){
             $order = Order::find($id);
+            $order->$request->input('rider');
             $order->packed_at = now();
             $order->save();
             request()->session()->flash('success','Order packed');
