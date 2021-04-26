@@ -101,7 +101,8 @@ class OrdersController extends Controller
         else{
             request()->session()->flash('error','Error occurred while updating order');
         }
-        return redirect()->route('admin.orders.show',[$id]);
+        // return back();
+        return back();
     }
 
     /* 
@@ -119,7 +120,7 @@ class OrdersController extends Controller
         $response = $request->input('response');
         if ($response == 'packed'){
             $order = Order::find($id);
-            $order->$request->input('rider');
+            $order->rider_id = $request->input('rider');
             $order->packed_at = now();
             $order->save();
             request()->session()->flash('success','Order packed');
@@ -127,7 +128,7 @@ class OrdersController extends Controller
         else{
             request()->session()->flash('error','Error occurred while updating order');
         }
-        return redirect()->route('admin.orders.show',[$id]);
+        return back();
     }
 
     /* 
@@ -147,7 +148,7 @@ class OrdersController extends Controller
         else{
             request()->session()->flash('error','Error occurred while updating order');
         }
-        return redirect()->route('admin.orders.show',[$id]);
+        return back();
     }
 
     /* 
@@ -167,7 +168,7 @@ class OrdersController extends Controller
         else{
             request()->session()->flash('error','Error occurred while updating order');
         }
-        return redirect()->route('admin.orders.show',[$id]);
+        return back();
     }
 
     /* 
@@ -190,6 +191,6 @@ class OrdersController extends Controller
         else{
             request()->session()->flash('error','Error occurred while updating order');
         }
-        return redirect()->route('admin.orders.show',[$id]);
+        return back();
     }
 }

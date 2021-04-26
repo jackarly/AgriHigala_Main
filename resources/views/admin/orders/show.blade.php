@@ -33,8 +33,8 @@
       $return_pending_btn = false;
       $return_pending_disable = 'disabled';
 
+      // SET STATUS FOR COMPLETE
       if ($order->completed_at) {
-        // SET STATUS FOR COMPLETE
         if ($order->order_accepted_at == null) {
           $status = 'Rejected';
           $status_btn = 'badge-danger';
@@ -49,8 +49,8 @@
           $status_btn = 'badge-success';
         }
       } else {
+        // SET STATUS FOR RETURN ORDER
         if ($order->return_created_at){
-          // SET STATUS FOR RETURN ORDER
           if($order->return_accepted_at == null ){
             $return_btn = true;
             $return_disable = '';
@@ -90,47 +90,6 @@
           }
         }
       }
-
-      // if($order->order_accepted_at == null && $order->completed_at == null && $title == 'order'){
-      //   $request_btn = true;
-      //   $request_disable = '';
-      //   $status = 'Requesting';
-      //   $status_btn = 'badge-secondary';
-      // }
-      // elseif($order->order_accepted_at != null && $order->packed_at == null && $order->completed_at == null && $title == 'order'){
-      //   $pending_btn = true;
-      //   $pending_disable = '';
-      //   $status = 'Pending';
-      //   $status_btn = 'badge-warning';
-      // }
-      // elseif($order->packed_at != null && $order->delivered_at == null && $title == 'order'){
-      //   $delivering_btn = true;
-      //   $delivering_disable = '';
-      //   $status = 'Delivering';
-      //   $status_btn = 'badge-info';
-      // }
-      // elseif($order->delivered_at != null && $order->completed_at == null && $title == 'order'){
-      //   $delivered_btn = true;
-      //   $delivered_disable = '';
-      //   $status = 'Delivered';
-      //   $status_btn = 'badge-success';
-      // }
-      // elseif($order->return_accepted_at == null && $order->completed_at == null){
-      //   $return_btn = true;
-      //   $return_disable = '';
-      //   $status = 'Requesting';
-      //   $status_btn = 'badge-secondary';
-      // }
-      // elseif($order->return_accepted_at != null && $order->completed_at == null){
-      //   $return_pending_btn = true;
-      //   $return_pending_disable = '';
-      //   $status = 'Pending';
-      //   $status_btn = 'badge-warning';
-      // }
-      // elseif($order->delivered_at != null && $order->completed_at != null ){
-      //   $status = 'Complete';
-      //   $status_btn = 'badge-success';
-      // }
     @endphp
 
     {{-- INFORMATION --}}
@@ -220,7 +179,7 @@
                     <option disabled selected>--- Select Rider ---</option>
                     @if ($riders)
                       @foreach ($riders as $rider)
-                        <option value="{{$rider->rider_id}}">{{$rider->f_name}} {{$rider->l_name}}</option>
+                        <option value="{{$rider->rider_id}}" {{$order->rider_id == $rider->rider_id ? 'selected' : ''}}>{{$rider->f_name}} {{$rider->l_name}}</option>
                       @endforeach
                     @endif
                   </select>
@@ -305,15 +264,15 @@
                       <option disabled selected>--- Select Reason ---</option>
                       @if ($reasons)
                         @foreach ($reasons as $reason)
-                          <option value="{{$reason->reason_id}}">{{$reason->reason_name}}</option>
+                          <option value="{{$reason->reason_id}}" {{$order->reason_id == $reason->reason_id ? 'selected' : ''}}>{{$reason->reason_name}}</option>
                         @endforeach
                       @endif
                     </select>
                     @error('reason')
                       <span class="text-danger">{{$message}}</span>
                     @enderror
-                    <div class="form-group mt-1" style="width: 100%">
-                      <textarea name="description" id="description" rows="3" class="form-control form-control-sm" style="width: 100%" {{$delivered_disable}}>{{old('description', $order->reason_description )}}</textarea>
+                    <div class="form-group mt-1 w-100">
+                      <textarea name="description" id="description" rows="3" class="form-control form-control-sm w-100"  {{$delivered_disable}}>{{old('description', $order->reason_description )}}</textarea>
                     </div>
                   </form>
                 </div>

@@ -32,6 +32,7 @@ class UsersController extends Controller{
     }
 
     public function store(Request $request){
+
         // USER TABLE VALIDATOR
         $validated = $request->validate([
             'username' => ['required','string','min:2','regex:/^\S*$/u'],

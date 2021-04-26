@@ -50,4 +50,5 @@ class Order extends Model
                 return 0;
         }
     }
+    
 }

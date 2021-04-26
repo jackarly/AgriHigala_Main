@@ -11,3 +11,21 @@ input#user_image {
     border: 1px solid #d1d3e2;
     border-radius: .35rem;
 }
+
+// INBOX & MESSAGES
+.border-buyer {
+    border-left: 4px solid #79B243;
+}
+.border-seller {
+    border-left: 4px solid #694E40;
+}
+
+.custom-font-green{
+    color:  #79B243;
+}
+.custom-font-brown{
+    color: #694E40;
+}
+.message-container {
+    height: 70vh;
+}

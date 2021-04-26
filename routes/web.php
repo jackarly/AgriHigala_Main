@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/admin', 'admin\AdminsController@adminDashboard')->name('admin');
 Route::get('/home', 'HomeController@index')->name('home');
 
 /* 
@@ -24,7 +25,6 @@ Admin
  */
 Route::prefix('admin')->group(function () {
     // ADMIN
-    Route::get('/', 'admin\AdminsController@adminDashboard')->name('admin');
     Route::get('/login', 'admin\AdminsController@showAdminLoginForm')->name('admin.login');
     Route::get('/reviews', 'admin\AdminsController@showAdminLoginForm')->name('admin.review.index');
 
@@ -57,5 +57,25 @@ Route::prefix('admin')->group(function () {
 
     // HISTORY ORDERS
     Route::resource('/history','admin\HistoryController', ['names' => 'admin.history']);
+
+    // MESSAGES
+    Route::resource('/messages','admin\MessagesController', ['names' => 'admin.messages']);
+    
+    // RATINGS
+    Route::get('/ratings', 'admin\RatingsController@index')->name('admin.ratings.index');
+    
+    // FEEDBACK
+    Route::get('/feedbacks', 'admin\SettingsController@feedbacks')->name('admin.feedbacks');
+
+    // ANNOUNCEMENT
+    Route::get('/announcements', 'admin\SettingsController@announcements')->name('admin.announcements');
+    Route::get('/announcements/create', 'admin\SettingsController@createAnnouncements')->name('admin.announcements.create');
+    Route::post('/announcements/store', 'admin\SettingsController@storeAnnouncements')->name('admin.announcements.store');
+    Route::delete('/announcements/destroy/{id}', 'admin\SettingsController@destroyAnnouncements')->name('admin.announcements.destroy');
+
+    // CUSTOMER SERVICE
+    Route::get('/customer-service', 'admin\SettingsController@customerService')->name('admin.customer-service');
+    Route::get('/customer-service/{id}', 'admin\SettingsController@replyCustomerService')->name('admin.customer-service.reply');
+    Route::post('/customer-service/store', 'admin\SettingsController@storeCustomerService')->name('admin.customer-service.store');
 
 });

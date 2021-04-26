@@ -10,15 +10,11 @@ use App\ReturnOrder;
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // SET TITLE
-        $title = 'order';
+        $title = 'complete, reject, cancel order';
 
         // GET ORDER, PAYMENT, & RETURN ORDER
         $orders = DB::table('orders as a')
@@ -26,7 +22,6 @@ class HistoryController extends Controller
             ->leftJoin('return_orders as c', 'c.order_id', 'a.order_id')
             ->join('fees as d', 'b.fee_id', 'd.fee_id')
             ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'c.description as reason_description', 'd.seller_id')
-            // ->select('a.order_id','a.completed_at', 'a.accepted_at as order_accepted_at', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'a.packed_at' )
             ->where('a.completed_at', '<>' ,null)
             // ->get();
             ->paginate(10);
@@ -35,70 +30,54 @@ class HistoryController extends Controller
 
         return view('admin.orders.index',compact('orders', 'title'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        return redirect()->route('admin.returns.index');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        return redirect()->route('admin.returns.index');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
-        //
-    }
+        // SET TITLE
+        $title = 'complete, reject, cancel order';
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+        // FIND RETURN ORDER
+        $order = DB::table('orders as a')
+            ->join('payments as b', 'a.order_id', 'b.order_id')
+            ->join('return_orders as c', 'c.order_id', 'a.order_id')
+            ->join('fees as d', 'b.fee_id', 'd.fee_id')
+            ->select('a.*', 'b.*', 'a.accepted_at as order_accepted_at', 'a.created_at as order_created_at', 'b.created_at as payment_created_at', 'c.return_id', 'c.reason_id', 'c.description', 'c.accepted_at as return_accepted_at', 'c.denied_at as return_denied_at', 'c.created_at as return_created_at', 'c.description as reason_description', 'd.seller_id')
+            ->where('a.order_id', $id)
+            ->where('a.completed_at', '<>' ,null)
+            ->first();
+
+        if ($order){
+            return view('admin.orders.show',compact('order','title'));
+        }
+        else{
+            request()->session()->flash('error','Return order not found');
+            return redirect()->route('admin.returns.index');
+        }
+    }
+    
+
     public function edit($id)
     {
-        //
+        return redirect()->route('admin.returns.index');
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->route('admin.returns.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
-        //
+        return redirect()->route('admin.returns.index');
     }
 }

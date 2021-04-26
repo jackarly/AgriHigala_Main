@@ -154,7 +154,14 @@
 
                   {{-- ACTION --}}
                   <td>
-                    @if ($title == 'return order')
+                    @if ($title == 'order')
+                      <a href="{{route('admin.orders.show',$order->order_id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                      <form method="POST" action="{{route('admin.orders.destroy',[$order->order_id])}}">
+                        @csrf 
+                        @method('delete')
+                            <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->order_id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
+                      </form>
+                    @elseif($title == 'return order')
                       <a href="{{route('admin.returns.show',$order->order_id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
                       <form method="POST" action="{{route('admin.returns.destroy',[$order->order_id])}}">
                         @csrf 
@@ -162,12 +169,12 @@
                             <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->order_id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
                       </form>
                     @else
-                      <a href="{{route('admin.orders.show',$order->order_id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
-                      <form method="POST" action="{{route('admin.orders.destroy',[$order->order_id])}}">
+                      <a href="{{route('admin.history.show',$order->order_id)}}" class="btn btn-primary btn-sm float-left mr-1" style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" title="edit" data-placement="bottom"><i class="fas fa-edit"></i></a>
+                      {{-- <form method="POST" action="{{route('admin.history.destroy',[$order->order_id])}}">
                         @csrf 
                         @method('delete')
                             <button class="btn btn-danger btn-sm dltBtn" data-id={{$order->order_id}} style="height:30px; width:30px;border-radius:50%" data-toggle="tooltip" data-placement="bottom" title="Delete"><i class="fas fa-trash-alt"></i></button>
-                      </form>
+                      </form> --}}
                     @endif
                     
                   </td>

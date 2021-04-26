@@ -46,7 +46,7 @@
         </li>
         <!--Messages -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.messages.index')}}">
                 <i class="fas fa-envelope"></i>
                 <span>Messages</span>
             </a>
@@ -88,20 +88,6 @@
               </div>
             </div>
         </li>
-        <!--SRPs -->
-        {{-- <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#srpCollapse" aria-expanded="true" aria-controls="srpCollapse">
-            <i class="fas fa-sitemap"></i>
-            <span>SRP</span>
-            </a>
-            <div id="srpCollapse" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">SRP Options:</h6>
-                <a class="collapse-item" href="#">SRP</a>
-                <a class="collapse-item" href="#">Add SRP</a>
-            </div>
-            </div>
-        </li> --}}
         <!--Stocks -->
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stockCollapse" aria-expanded="true" aria-controls="stockCollapse">
@@ -148,7 +134,7 @@
         </li>
         <!--Ratings -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.ratings.index')}}">
                 <i class="fas fa-hammer"></i>
                 <span>Ratings</span>
             </a>
@@ -164,23 +150,23 @@
         </div>
         <!--Announcements -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.announcements')}}">
                 <i class="fas fa-hammer"></i>
                 <span>Announcements</span>
             </a>
         </li>
-        <!--Feedbacks -->
+        <!--Customer Service -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.customer-service')}}">
                 <i class="fas fa-hammer"></i>
-                <span>Feedbacks</span>
+                <span>Customer Service</span>
             </a>
         </li>
-        <!--Settings -->
+        <!--Feedbacks -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{route('admin.feedbacks')}}">
                 <i class="fas fa-hammer"></i>
-                <span>Settings</span>
+                <span>Feedbacks</span>
             </a>
         </li>
         <!-- Divider -->

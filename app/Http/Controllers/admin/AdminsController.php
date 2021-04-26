@@ -12,8 +12,7 @@ use App\Admin;
 class AdminsController extends Controller
 {
     
-    public function __construct()
-    {
+    public function __construct() {
         
     }
 
@@ -24,6 +23,17 @@ class AdminsController extends Controller
 
     // DASHBOARD
     public function adminDashboard(){
+
+        // CHECK IF AUTHENTICATED & ADMIN
+        // if (!Auth::check()){
+        //     return redirect()->route('admin.login');
+        // }
+        // else{
+        //     if (Auth::user()->user_type != 1){
+        //         return back();
+        //     }
+        // }
+
         return view('admin.index');
     }
 
